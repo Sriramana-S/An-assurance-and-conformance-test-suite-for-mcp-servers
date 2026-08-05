@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Survey - Aggregate Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background:#0f172a; color:#e2e8f0; margin:0; padding:24px; }
+  h1 { font-size:1.8rem; } h2 { color:#93c5fd; margin-top:8px; }
+  .meta { color:#94a3b8; margin-bottom:20px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .card { background:#1e293b; border:1px solid #334155; border-radius:10px; padding:18px; }
+  .full { grid-column:1 / -1; }
+  canvas { max-height:340px; }
+  table { width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:10px; }
+  th { text-align:left; background:#334155; padding:8px; position:sticky; top:0; }
+  td { padding:7px 8px; border-bottom:1px solid #334155; }
+  td.num { text-align:right; font-variant-numeric:tabular-nums; }
+  td.ok { color:#34d399; } td.skip { color:#fbbf24; }
+  tbody tr:hover { background:#273449; }
+</style>
+</head>
+<body>
+  <h1>MCP Survey &mdash; Aggregate Analysis</h1>
+  <div class="meta">n = 37 tested servers &middot; mean MUST score 84.74% &middot; median 86.67%</div>
+  <div class="grid">
+    <div class="card"><canvas id="hist"></canvas></div>
+    <div class="card"><canvas id="viol"></canvas></div>
+    <div class="card full"><canvas id="cmp"></canvas></div>
+    <div class="card full">
+      <h2>Pass-or-Advisory Rate by Category</h2>
+      <p class="meta">pass_or_advisory_rate_by_category = (PASS + WARN) / (PASS + FAIL + WARN) &times; 100 &mdash; a WARN is a silent-drop advisory (conformant-with-advisory), only a wrong response (FAIL) counts against the rate.</p>
+      <table>
+        <thead><tr><th>Category</th><th>Pass-or-Advisory Rate</th></tr></thead>
+        <tbody><tr><td>Protocol Conformance</td><td class='num'>92.6%</td></tr><tr><td>Functional Correctness</td><td class='num'>96.1%</td></tr><tr><td>Basic Security Validation</td><td class='num'>74.6%</td></tr><tr><td>Advanced Negative Validation</td><td class='num'>86.9%</td></tr><tr><td>Interoperability</td><td class='num'>98.6%</td></tr><tr><td>Authorization Conformance</td><td class='num'>100.0%</td></tr></tbody>
+      </table>
+    </div>
+    <div class="card full">
+      <h2>Per-Server Summary (sorted by score)</h2>
+      <table>
+        <thead><tr>
+          <th>Server Name</th><th>SDK</th><th>Source</th><th>Score</th>
+          <th>MUST Violations</th><th>SHOULD Advisories</th><th>Status</th>
+        </tr></thead>
+        <tbody><tr><td>server-everything</td><td>typescript</td><td>official</td><td class='num'>94.7%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>kawacode-mcp</td><td>typescript</td><td>community</td><td class='num'>94.7%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>adeu-mcp</td><td>typescript</td><td>community</td><td class='num'>94.1%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>server-filesystem</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>server-memory</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>server-sequentialthinking</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>playwright-mcp</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>mcp-hn</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>mcp-server-airbnb</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>notion-mcp</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>computeback-mcp</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>optibot-mcp</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>meetlark-mcp</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>nocturnusai-mcp</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>raven-mcp</td><td>typescript</td><td>community</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>server-github</td><td>typescript</td><td>official</td><td class='num'>93.3%</td><td class='num'>1</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>ai-dossier-mcp</td><td>typescript</td><td>community</td><td class='num'>89.5%</td><td class='num'>2</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>autonomad-travel</td><td>typescript</td><td>community</td><td class='num'>88.2%</td><td class='num'>2</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>rapay-mcp</td><td>typescript</td><td>community</td><td class='num'>86.7%</td><td class='num'>2</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>mcpcap</td><td>python</td><td>community</td><td class='num'>81.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-fetch</td><td>python</td><td>official</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-calculator</td><td>python</td><td>community</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-duckduckgo</td><td>python</td><td>community</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>arxiv-mcp-server</td><td>python</td><td>community</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>wikipedia-mcp</td><td>python</td><td>community</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>nudg3-mcp</td><td>python</td><td>community</td><td class='num'>80.0%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-time</td><td>python</td><td>official</td><td class='num'>77.8%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-datetime</td><td>python</td><td>community</td><td class='num'>77.8%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-perplexity</td><td>python</td><td>community</td><td class='num'>77.8%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-jupyter</td><td>python</td><td>community</td><td class='num'>77.8%</td><td class='num'>4</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>mcp-server-sqlite</td><td>python</td><td>official</td><td class='num'>77.3%</td><td class='num'>5</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>boolsai-scan</td><td>unknown</td><td>community</td><td class='num'>76.0%</td><td class='num'>6</td><td class='num'>3</td><td class='ok'>tested</td></tr><tr><td>boolsai-signals</td><td>unknown</td><td>community</td><td class='num'>75.0%</td><td class='num'>6</td><td class='num'>4</td><td class='ok'>tested</td></tr><tr><td>mcp-server-git</td><td>python</td><td>official</td><td class='num'>71.4%</td><td class='num'>1</td><td class='num'>0</td><td class='ok'>tested</td></tr><tr><td>auteng-mcp</td><td>unknown</td><td>community</td><td class='num'>67.9%</td><td class='num'>9</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>agenticshelf-mcp</td><td>unknown</td><td>community</td><td class='num'>67.9%</td><td class='num'>9</td><td class='num'>2</td><td class='ok'>tested</td></tr><tr><td>abmeter-mcp</td><td>unknown</td><td>community</td><td class='num'>66.7%</td><td class='num'>11</td><td class='num'>1</td><td class='ok'>tested</td></tr><tr><td>server-brave-search</td><td>typescript</td><td>official</td><td class='num'>-</td><td class='num'>0</td><td class='num'>0</td><td class='skip'>skipped_credentials</td></tr><tr><td>server-slack</td><td>typescript</td><td>official</td><td class='num'>-</td><td class='num'>0</td><td class='num'>0</td><td class='skip'>skipped_credentials</td></tr><tr><td>server-google-maps</td><td>typescript</td><td>official</td><td class='num'>-</td><td class='num'>0</td><td class='num'>0</td><td class='skip'>skipped_credentials</td></tr><tr><td>mcp-server-gitlab</td><td>typescript</td><td>community</td><td class='num'>-</td><td class='num'>0</td><td class='num'>0</td><td class='skip'>skipped_credentials</td></tr><tr><td>mcp-server-aws-kb</td><td>typescript</td><td>official</td><td class='num'>-</td><td class='num'>0</td><td class='num'>0</td><td class='skip'>skipped_credentials</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+<script>
+const opts = (title, ymax) => ({
+  responsive:true,
+  plugins:{ legend:{display:false}, title:{display:true,text:title,color:'#e2e8f0',font:{size:15}} },
+  scales:{ x:{ticks:{color:'#cbd5e1'},grid:{color:'#334155'}},
+           y:{beginAtZero:true,max:ymax,ticks:{color:'#cbd5e1'},grid:{color:'#334155'}} }
+});
+new Chart(document.getElementById('hist'), {
+  type:'bar',
+  data:{ labels:["0-20", "21-40", "41-60", "61-80", "81-100"], datasets:[{ data:[0, 0, 0, 17, 20], backgroundColor:["#94a3b8", "#fb7185", "#fbbf24", "#60a5fa", "#34d399"] }] },
+  options:opts('MUST Compliance Score Distribution (n=37)', null)
+});
+new Chart(document.getElementById('viol'), {
+  type:'bar',
+  data:{ labels:["Empty Method", "Unknown Method", "Non-Object JSON", "Malformed JSON Parse Error", "Array Params", "Invalid JSON-RPC Version", "Missing JSON-RPC Version", "Missing Id Treated as Notification", "Null Id Treated as Notification", "Resource Read"], datasets:[{ data:[94.6, 43.2, 37.8, 35.1, 10.8, 10.8, 10.8, 8.1, 8.1, 8.1], backgroundColor:["#ef4444", "#f59e0b", "#eab308", "#eab308", "#eab308", "#eab308", "#eab308", "#eab308", "#eab308", "#eab308"] }] },
+  options:opts('Most Violated Spec Clauses (% servers failing)', 100)
+});
+new Chart(document.getElementById('cmp'), {
+  type:'bar',
+  data:{ labels:["TypeScript", "Python", "Official", "Community"], datasets:[{ data:[92.7, 78.52, 87.38, 83.62], backgroundColor:["#3178c6", "#3776ab", "#22c55e", "#a855f7"] }] },
+  options:opts('Mean MUST Compliance by SDK and Source', 100)
+});
+</script>
+</body>
+</html>

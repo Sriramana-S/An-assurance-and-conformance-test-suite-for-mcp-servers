@@ -1,0 +1,43 @@
+name,sdk,source,status,score,passed,failed,warned,skipped,must_violations,should_advisories,top_failures
+server-everything,typescript,official,tested,94.74,18,1,10,5,1,2,Empty Method Rejection
+server-filesystem,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+server-memory,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+server-sequentialthinking,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+playwright-mcp,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+mcp-hn,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+mcp-server-time,python,official,tested,77.78,14,4,7,9,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-git,python,official,tested,71.43,5,2,9,18,1,0,"Unknown Method Rejection, Unsupported Protocol Version Handling"
+mcp-server-fetch,python,official,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-calculator,python,community,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-datetime,python,community,tested,77.78,14,4,7,9,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-airbnb,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+mcp-server-sqlite,python,official,tested,77.27,17,5,7,5,5,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-duckduckgo,python,community,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+arxiv-mcp-server,python,community,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+wikipedia-mcp,python,community,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+notion-mcp,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+adeu-mcp,typescript,community,tested,94.12,16,1,10,7,1,2,Empty Method Rejection
+computeback-mcp,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+autonomad-travel,typescript,community,tested,88.24,15,2,10,7,2,2,"Resource Read Validation, Empty Method Rejection"
+optibot-mcp,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+ai-dossier-mcp,typescript,community,tested,89.47,17,2,10,5,2,2,"Resource Read Validation, Empty Method Rejection"
+kawacode-mcp,typescript,community,tested,94.74,18,1,10,5,1,2,Empty Method Rejection
+meetlark-mcp,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+nocturnusai-mcp,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+rapay-mcp,typescript,community,tested,86.67,13,2,10,9,2,2,"Empty Method Rejection, Capability-Gated Tool Call"
+raven-mcp,typescript,community,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+mcpcap,python,community,tested,80.95,17,4,7,6,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+nudg3-mcp,python,community,tested,80.0,16,4,7,7,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-perplexity,python,community,tested,77.78,14,4,7,9,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+mcp-server-jupyter,python,community,tested,77.78,14,4,7,9,4,1,"Unknown Method Rejection, Empty Method Rejection, Malformed JSON Parse Error"
+server-github,typescript,official,tested,93.33,14,1,10,9,1,2,Empty Method Rejection
+server-brave-search,typescript,official,skipped_credentials,0.0,0,0,0,0,0,0,
+server-slack,typescript,official,skipped_credentials,0.0,0,0,0,0,0,0,
+server-google-maps,typescript,official,skipped_credentials,0.0,0,0,0,0,0,0,
+mcp-server-gitlab,typescript,community,skipped_credentials,0.0,0,0,0,0,0,0,
+mcp-server-aws-kb,typescript,official,skipped_credentials,0.0,0,0,0,0,0,0,
+boolsai-scan,unknown,community,tested,76.0,19,6,4,5,6,3,"Empty Method Rejection, Missing JSON-RPC Version Rejection, Invalid JSON-RPC Version Rejection"
+boolsai-signals,unknown,community,tested,75.0,18,6,5,5,6,4,"Empty Method Rejection, Missing JSON-RPC Version Rejection, Invalid JSON-RPC Version Rejection"
+auteng-mcp,unknown,community,tested,67.86,19,9,3,3,9,2,"Unknown Method Rejection, Null Method Rejection, Invalid Method Type Rejection"
+abmeter-mcp,unknown,community,tested,66.67,22,11,1,0,11,1,"Tools List Schema, Resources List Schema, Prompts List Schema"
+agenticshelf-mcp,unknown,community,tested,67.86,19,9,3,3,9,2,"Unknown Method Rejection, Null Method Rejection, Invalid Method Type Rejection"

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Longitudinal Regression Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  body{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:#0f172a;color:#e2e8f0;margin:0;padding:24px;}
+  h1{font-size:1.7rem;} h2{color:#93c5fd;margin-top:26px;}
+  .meta{color:#94a3b8;margin-bottom:16px;}
+  .summary{display:flex;flex-wrap:wrap;gap:16px;}
+  .stat{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:12px 20px;}
+  .stat .n{font-size:1.6rem;font-weight:700;} .stat .l{color:#94a3b8;font-size:0.75rem;text-transform:uppercase;}
+  .drop .n{color:#f87171;} .impr .n{color:#34d399;}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-top:8px;}
+  th{text-align:left;background:#334155;padding:7px;} td{padding:6px 8px;border-bottom:1px solid #273449;}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;}
+  ul{line-height:1.6;} .mono{font-family:monospace;color:#cbd5e1;}
+  .charts{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-top:20px;}
+  .chart-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:18px;}
+  .chart-card canvas{max-height:360px;}
+  @media (max-width:900px){.charts{grid-template-columns:1fr;}}
+</style></head><body>
+<h1>MCP Longitudinal Regression Report</h1>
+<div class="meta">Comparing <b>snapshot_20260610_230717.json</b> &rarr; <b>snapshot_20260610_231210.json</b></div>
+<div class="summary">
+  <div class="stat drop"><div class="n">0</div><div class="l">Score drops</div></div>
+  <div class="stat impr"><div class="n">0</div><div class="l">Improvements</div></div>
+  <div class="stat"><div class="n">8</div><div class="l">New servers</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Missing servers</div></div>
+  <div class="stat drop"><div class="n">0</div><div class="l">New MUST violations</div></div>
+  <div class="stat impr"><div class="n">0</div><div class="l">Fixed MUST violations</div></div>
+</div>
+<div class="charts">
+  <div class="chart-card"><canvas id="scoreChart"></canvas></div>
+  <div class="chart-card"><canvas id="changeChart"></canvas></div>
+</div>
+<h2>Score Drops (Regressions)</h2>
+<table><thead><tr><th>Server</th><th>Old</th><th>New</th><th>Delta</th></tr></thead><tbody><tr><td colspan='4'>none</td></tr></tbody></table>
+<h2>Improvements</h2>
+<table><thead><tr><th>Server</th><th>Old</th><th>New</th><th>Delta</th></tr></thead><tbody><tr><td colspan='4'>none</td></tr></tbody></table>
+<h2>New Servers</h2><ul><li>mcp-server-aws-kb</li><li>mcp-server-gitlab</li><li>mcp-server-jupyter</li><li>mcp-server-perplexity</li><li>server-brave-search</li><li>server-github</li><li>server-google-maps</li><li>server-slack</li></ul>
+<h2>Missing Servers</h2><ul><li>none</li></ul>
+<h2>New MUST Violations</h2><ul><li>none</li></ul>
+<h2>Fixed MUST Violations</h2><ul><li>none</li></ul>
+<script>
+const gridColor = '#334155', tickColor = '#cbd5e1';
+// Chart 1 — score comparison (snapshot 1 vs snapshot 2), side-by-side bars.
+new Chart(document.getElementById('scoreChart'), {
+  type: 'bar',
+  data: {
+    labels: ["adeu-mcp", "ai-dossier-mcp", "arxiv-mcp-serv\u2026", "autonomad-trav\u2026", "computeback-mcp", "kawacode-mcp", "mcp-datetime", "mcp-hn", "mcp-server-air\u2026", "mcp-server-cal\u2026", "mcp-server-duc\u2026", "mcp-server-fet\u2026", "mcp-server-git", "mcp-server-sql\u2026", "mcp-server-time", "mcpcap", "meetlark-mcp", "nocturnusai-mcp", "notion-mcp", "nudg3-mcp", "optibot-mcp", "playwright-mcp", "rapay-mcp", "raven-mcp", "server-everyth\u2026", "server-filesys\u2026", "server-memory", "server-sequent\u2026", "wikipedia-mcp"],
+    datasets: [
+      { label: 'Snapshot 1', data: [94.12, 89.47, 80.0, 88.24, 93.33, 94.74, 77.78, 93.33, 93.33, 80.0, 80.0, 80.0, 71.43, 77.27, 77.78, 80.95, 93.33, 93.33, 93.33, 80.0, 93.33, 93.33, 86.67, 93.33, 94.74, 93.33, 93.33, 93.33, 80.0], backgroundColor: '#3b82f6' },
+      { label: 'Snapshot 2', data: [94.12, 89.47, 80.0, 88.24, 93.33, 94.74, 77.78, 93.33, 93.33, 80.0, 80.0, 80.0, 71.43, 77.27, 77.78, 80.95, 93.33, 93.33, 93.33, 80.0, 93.33, 93.33, 86.67, 93.33, 94.74, 93.33, 93.33, 93.33, 80.0], backgroundColor: ["#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b", "#64748b"] }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { color: tickColor } },
+      title: { display: true, color: '#e2e8f0', font: { size: 15 },
+               text: 'MUST Compliance Score: Snapshot 1 vs Snapshot 2' }
+    },
+    scales: {
+      x: { ticks: { color: tickColor, autoSkip: false, maxRotation: 90, minRotation: 45 }, grid: { color: gridColor } },
+      y: { beginAtZero: true, max: 100, ticks: { color: tickColor, callback: v => v + '%' }, grid: { color: gridColor } }
+    }
+  }
+});
+// Chart 2 — change-summary donut.
+new Chart(document.getElementById('changeChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Improved', 'Dropped', 'Unchanged', 'New', 'Missing'],
+    datasets: [{
+      data: [0, 0, 29, 8, 0],
+      backgroundColor: ['#34d399', '#f87171', '#64748b', '#3b82f6', '#fbbf24']
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { color: tickColor } },
+      title: { display: true, color: '#e2e8f0', font: { size: 15 },
+               text: 'Server Conformance Changes Between Snapshots' }
+    }
+  }
+});
+</script>
+</body></html>

@@ -1,0 +1,505 @@
+{
+  "targets_compared": [
+    "local-sample (compliant)",
+    "server-everything",
+    "mcp-server-time"
+  ],
+  "request_count": 15,
+  "divergence_count": 18,
+  "divergences": [
+    {
+      "request_name": "resources/list",
+      "request_method": "resources/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "result",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "result",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "error",
+          "error_code": -32601,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=result, server-everything=result, mcp-server-time=error"
+    },
+    {
+      "request_name": "prompts/list",
+      "request_method": "prompts/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "result",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "result",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "error",
+          "error_code": -32601,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=result, server-everything=result, mcp-server-time=error"
+    },
+    {
+      "request_name": "unknown method",
+      "request_method": "nonexistent/method",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32601,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "error",
+          "error_code": -32601,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "error",
+          "error_code": -32602,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "error_code_mismatch",
+      "description": "Error codes differ: local-sample (compliant)=-32601, server-everything=-32601, mcp-server-time=-32602"
+    },
+    {
+      "request_name": "null method",
+      "request_method": "(null)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "null method",
+      "request_method": "(null)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=False"
+    },
+    {
+      "request_name": "empty string method",
+      "request_method": "(empty)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "error",
+          "error_code": -32601,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "error",
+          "error_code": -32602,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "error_code_mismatch",
+      "description": "Error codes differ: local-sample (compliant)=-32600, server-everything=-32601, mcp-server-time=-32602"
+    },
+    {
+      "request_name": "invalid jsonrpc version",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "invalid jsonrpc version",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=False"
+    },
+    {
+      "request_name": "missing jsonrpc field",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "missing jsonrpc field",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=False"
+    },
+    {
+      "request_name": "malformed JSON body",
+      "request_method": "(raw)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32700,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "malformed JSON body",
+      "request_method": "(raw)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32700,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=True"
+    },
+    {
+      "request_name": "non-object JSON body",
+      "request_method": "(raw)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "non-object JSON body",
+      "request_method": "(raw)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": true
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=True"
+    },
+    {
+      "request_name": "array params",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "array params",
+      "request_method": "tools/list",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=False"
+    },
+    {
+      "request_name": "missing method field",
+      "request_method": "(none)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "response_type_mismatch",
+      "description": "Response type differs: local-sample (compliant)=error, server-everything=no_response, mcp-server-time=no_response"
+    },
+    {
+      "request_name": "missing method field",
+      "request_method": "(none)",
+      "per_server_observations": [
+        {
+          "name": "local-sample (compliant)",
+          "response_type": "error",
+          "error_code": -32600,
+          "has_jsonrpc_field": true
+        },
+        {
+          "name": "server-everything",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        },
+        {
+          "name": "mcp-server-time",
+          "response_type": "no_response",
+          "error_code": null,
+          "has_jsonrpc_field": false
+        }
+      ],
+      "divergence_type": "jsonrpc_field_mismatch",
+      "description": "jsonrpc field presence differs: local-sample (compliant)=True, server-everything=False, mcp-server-time=False"
+    }
+  ],
+  "per_server_summary": [
+    {
+      "name": "local-sample (compliant)",
+      "sdk": "reference",
+      "source": "local",
+      "requests_sent": 15,
+      "responses_received": 13,
+      "transport_errors": 0
+    },
+    {
+      "name": "server-everything",
+      "sdk": "typescript",
+      "source": "official",
+      "requests_sent": 15,
+      "responses_received": 6,
+      "transport_errors": 0
+    },
+    {
+      "name": "mcp-server-time",
+      "sdk": "python",
+      "source": "official",
+      "requests_sent": 15,
+      "responses_received": 6,
+      "transport_errors": 0
+    }
+  ]
+}

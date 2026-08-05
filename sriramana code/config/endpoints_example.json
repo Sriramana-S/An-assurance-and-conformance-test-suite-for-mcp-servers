@@ -1,0 +1,80 @@
+{
+  "endpoints": [
+    {
+      "name": "Local Compliant",
+      "url": "http://127.0.0.1:8000",
+      "description": "Local compliant MCP server (sample_server/app.py)",
+      "protocol": "http",
+      "timeout": 30,
+      "skip_ssl_verify": false,
+      "metadata": {
+        "type": "test",
+        "version": "sample"
+      }
+    },
+    {
+      "name": "Non-Compliant Test",
+      "url": "http://127.0.0.1:8001",
+      "description": "Non-compliant server for violation testing",
+      "protocol": "http",
+      "timeout": 30,
+      "skip_ssl_verify": false,
+      "metadata": {
+        "type": "violation-test",
+        "violations_enabled": true
+      }
+    },
+    {
+      "name": "Official SDK Target",
+      "url": "http://127.0.0.1:8010/mcp",
+      "description": "Official MCP SDK reference implementation",
+      "protocol": "http",
+      "timeout": 30,
+      "skip_ssl_verify": false,
+      "metadata": {
+        "type": "reference",
+        "version": "official-sdk"
+      }
+    },
+    {
+      "name": "Local STDIO Sample",
+      "url": "stdio://local-sample",
+      "command": "python -m sample_server.stdio_app",
+      "description": "Local STDIO MCP server sample",
+      "protocol": "stdio",
+      "timeout": 30,
+      "skip_ssl_verify": false,
+      "metadata": {
+        "type": "test",
+        "version": "sample-stdio",
+        "protocol_version": "2025-11-25"
+      }
+    },
+    {
+      "name": "Docker STDIO Example",
+      "url": "stdio://docker-mcp-time",
+      "command": "docker run -i mcp/time",
+      "description": "Example Docker STDIO MCP server command",
+      "protocol": "stdio",
+      "timeout": 30,
+      "skip_ssl_verify": false,
+      "metadata": {
+        "type": "docker-example",
+        "protocol_version": "2025-11-25"
+      }
+    }
+  ],
+  "testing_options": {
+    "max_retries": 3,
+    "timeout_seconds": 30,
+    "skip_ssl_verification": false,
+    "parallel_testing": false
+  },
+  "report_options": {
+    "generate_json": true,
+    "generate_html": true,
+    "generate_csv": true,
+    "include_metrics": true,
+    "include_failure_analysis": true
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "total_servers_tested": 37,
+  "mean_must_score": 84.74,
+  "median_must_score": 86.67,
+  "score_distribution": {
+    "0-20": 0,
+    "21-40": 0,
+    "41-60": 0,
+    "61-80": 17,
+    "81-100": 20
+  },
+  "by_sdk": {
+    "python": {
+      "count": 13,
+      "mean_score": 78.52,
+      "median_score": 80.0
+    },
+    "typescript": {
+      "count": 19,
+      "mean_score": 92.7,
+      "median_score": 93.33
+    },
+    "unknown": {
+      "count": 5,
+      "mean_score": 70.68,
+      "median_score": 67.86
+    }
+  },
+  "by_source": {
+    "community": {
+      "count": 26,
+      "mean_score": 83.62,
+      "median_score": 80.47
+    },
+    "official": {
+      "count": 11,
+      "mean_score": 87.38,
+      "median_score": 93.33
+    }
+  },
+  "must_violations_by_test": [
+    {
+      "test_name": "Empty Method Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-empty",
+      "failed_count": 35,
+      "failure_rate_pct": 94.6
+    },
+    {
+      "test_name": "Unknown Method Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a75.1 \u2014 method not found (-32601)",
+      "failed_count": 16,
+      "failure_rate_pct": 43.2
+    },
+    {
+      "test_name": "Non-Object JSON Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 request must be object",
+      "failed_count": 14,
+      "failure_rate_pct": 37.8
+    },
+    {
+      "test_name": "Malformed JSON Parse Error",
+      "spec_clause": "JSON-RPC 2.0 \u00a74.1 \u2014 parse error (-32700)",
+      "failed_count": 13,
+      "failure_rate_pct": 35.1
+    },
+    {
+      "test_name": "Array Params Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 params must be object not array",
+      "failed_count": 4,
+      "failure_rate_pct": 10.8
+    },
+    {
+      "test_name": "Invalid JSON-RPC Version Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc must be exactly 2.0",
+      "failed_count": 4,
+      "failure_rate_pct": 10.8
+    },
+    {
+      "test_name": "Missing JSON-RPC Version Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc field required",
+      "failed_count": 4,
+      "failure_rate_pct": 10.8
+    },
+    {
+      "test_name": "Missing Id Treated as Notification",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 no-id message is notification",
+      "failed_count": 3,
+      "failure_rate_pct": 8.1
+    },
+    {
+      "test_name": "Null Id Treated as Notification",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 null-id message is notification",
+      "failed_count": 3,
+      "failure_rate_pct": 8.1
+    },
+    {
+      "test_name": "Resource Read Validation",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.2 \u2014 resources/read response",
+      "failed_count": 3,
+      "failure_rate_pct": 8.1
+    },
+    {
+      "test_name": "Capability-Gated Tool Call",
+      "spec_clause": "MCP spec 2025-11-25 \u00a73.2 \u2014 strict capability gating",
+      "failed_count": 2,
+      "failure_rate_pct": 5.4
+    },
+    {
+      "test_name": "Invalid Method Type Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be string",
+      "failed_count": 2,
+      "failure_rate_pct": 5.4
+    },
+    {
+      "test_name": "Missing Method Field Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method field required",
+      "failed_count": 2,
+      "failure_rate_pct": 5.4
+    },
+    {
+      "test_name": "Null Method Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-null string",
+      "failed_count": 2,
+      "failure_rate_pct": 5.4
+    },
+    {
+      "test_name": "Advertised Tool Execution",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 tools/call response",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Declared Capability Consistency",
+      "spec_clause": "MCP spec 2025-11-25 \u00a73.2 \u2014 capability negotiation",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Prompt Get Validation",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.3 \u2014 prompts/get response",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Prompts List Schema",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.3 \u2014 prompts/list response shape",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Resources List Schema",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.2 \u2014 resources/list response shape",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Tools List Schema",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 tools/list response shape",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    },
+    {
+      "test_name": "Unsupported Protocol Version Handling",
+      "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 version negotiation",
+      "failed_count": 1,
+      "failure_rate_pct": 2.7
+    }
+  ],
+  "warn_patterns_by_test": [
+    {
+      "test_name": "Invalid Tool Parameters Rejection",
+      "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 parameter validation",
+      "warned_count": 35,
+      "warn_rate_pct": 94.6
+    },
+    {
+      "test_name": "Array Params Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 params must be object not array",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Invalid JSON-RPC Version Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc must be exactly 2.0",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Invalid Method Type Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be string",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Missing JSON-RPC Version Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc field required",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Missing Method Field Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method field required",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Null Method Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-null string",
+      "warned_count": 32,
+      "warn_rate_pct": 86.5
+    },
+    {
+      "test_name": "Missing Initialize Client Info Rejection",
+      "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 clientInfo field",
+      "warned_count": 21,
+      "warn_rate_pct": 56.8
+    },
+    {
+      "test_name": "Malformed JSON Parse Error",
+      "spec_clause": "JSON-RPC 2.0 \u00a74.1 \u2014 parse error (-32700)",
+      "warned_count": 20,
+      "warn_rate_pct": 54.1
+    },
+    {
+      "test_name": "Non-Object JSON Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 request must be object",
+      "warned_count": 20,
+      "warn_rate_pct": 54.1
+    },
+    {
+      "test_name": "OAuth Discovery Endpoint",
+      "spec_clause": "MCP spec 2025-11-25 \u00a76.3 \u2014 OAuth 2.1 authorization server metadata",
+      "warned_count": 4,
+      "warn_rate_pct": 10.8
+    },
+    {
+      "test_name": "Transport Version Header in Response",
+      "spec_clause": "MCP spec 2025-11-25 \u00a72.4 \u2014 MCP-Protocol-Version in responses",
+      "warned_count": 4,
+      "warn_rate_pct": 10.8
+    },
+    {
+      "test_name": "Unsupported Protocol Version Handling",
+      "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 version negotiation",
+      "warned_count": 2,
+      "warn_rate_pct": 5.4
+    },
+    {
+      "test_name": "Empty Method Rejection",
+      "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-empty",
+      "warned_count": 1,
+      "warn_rate_pct": 2.7
+    }
+  ],
+  "pass_or_advisory_rate_by_category": {
+    "Protocol Conformance": 92.6,
+    "Functional Correctness": 96.1,
+    "Basic Security Validation": 74.6,
+    "Advanced Negative Validation": 86.9,
+    "Interoperability": 98.6,
+    "Authorization Conformance": 100.0
+  },
+  "fully_must_compliant_count": 0,
+  "zero_must_violations_pct": 0.0
+}

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Assurance Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: rgba(255,255,255,0.04);
+            --border: rgba(255,255,255,0.08);
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --accent: #667eea;
+            --pass: #2dd4bf;
+            --fail: #f87171;
+            --skip: #fbbf24;
+            --warn: #fb923c;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* --- Header --- */
+        .header {
+            background: linear-gradient(135deg, rgba(102,126,234,0.15) 0%, rgba(118,75,162,0.10) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 24px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .header .subtitle { color: var(--text-dim); font-size: 0.95rem; }
+
+        .hero-score {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 24px;
+        }
+        .hero-score .big {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #2dd4bf;
+            text-shadow: 0 0 40px rgba(45,212,191,0.4);
+            line-height: 1;
+        }
+        .hero-score .label {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+        .meta-strip span { display: inline-flex; align-items: center; gap: 6px; }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(8px);
+        }
+        .card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        /* --- Score rings --- */
+        .scores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+        .score-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .ring { width: 90px; height: 90px; transform: rotate(-90deg); }
+        .ring-bg { fill:none; stroke: var(--border); stroke-width:6; }
+        .ring-fg {
+            fill:none; stroke-width:6; stroke-linecap:round;
+            transition: stroke-dasharray 1s ease;
+        }
+        .ring-pass { stroke: var(--pass); }
+        .ring-warn { stroke: var(--skip); }
+        .ring-fail { stroke: var(--fail); }
+        .score-pct {
+            position: absolute; top: 30px; width: 100%;
+            text-align: center; font-size: 1.1rem; font-weight: 700;
+        }
+        .score-label {
+            margin-top: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-dim);
+        }
+        .score-detail { font-size: 0.75rem; color: var(--text-dim); margin-top: 2px; }
+
+        /* --- Transport / stability strip --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+        }
+        .info-item .il { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-item .iv { font-size: 1.1rem; font-weight: 600; margin-top: 4px; }
+
+        /* --- Stability --- */
+        .stability-detail {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* --- Badges --- */
+        .badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-pass { background: rgba(45,212,191,0.15); color: var(--pass); }
+        .badge-fail { background: rgba(248,113,113,0.15); color: var(--fail); }
+        .badge-warn { background: rgba(251,146,60,0.15); color: var(--warn); }
+        .badge-skip { background: rgba(251,191,36,0.15); color: var(--skip); }
+
+        .severity-pill {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .severity-critical { background: rgba(248,113,113,0.2); color: #fca5a5; }
+        .severity-high      { background: rgba(251,146,60,0.2); color: #fdba74; }
+        .severity-medium     { background: rgba(251,191,36,0.2); color: #fde68a; }
+        .severity-low        { background: rgba(148,163,184,0.2); color: #cbd5e1; }
+
+        /* --- Tables --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        thead th {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 2px solid var(--border);
+            color: var(--text-dim);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        tbody td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tbody tr { transition: background 0.15s; }
+        tbody tr:hover { background: rgba(255,255,255,0.03); }
+        .msg-cell { max-width: 400px; word-break: break-word; color: var(--text-dim); font-size: 0.85rem; }
+        .mono { font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.82rem; }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 24px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        .card, .header { animation: fadeIn 0.5s ease forwards; }
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .container { padding: 12px; }
+            .header { padding: 24px 16px; }
+            .hero-score .big { font-size: 3rem; }
+            .scores-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="header">
+            <h1>MCP Assurance Report</h1>
+            <p class="subtitle">Protocol Compliance &amp; Security Validation</p>
+            <div class="hero-score">
+                <div class="big">100.0%</div>
+                <div class="label">Overall MUST Compliance</div>
+            </div>
+            <div class="meta-strip">
+                <span>&#128193; http://127.0.0.1:8001</span>
+                <span>&#128268; http</span>
+                <span>&#128196; 2025-11-25</span>
+                <span>&#128197; 2026-06-10T22:02:42</span>
+            </div>
+        </div>
+
+        <!-- Compliance Score Cards -->
+        <section class="card" id="compliance-scores">
+            <h2>Compliance Scores</h2>
+            <div class="scores-grid">
+                
+            <div class="score-card">
+                <svg viewBox="0 0 100 100" class="ring">
+                    <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                    <circle cx="50" cy="50" r="40" class="ring-fg ring-pass"
+                        stroke-dasharray="251.2 251.2"/>
+                </svg>
+                <div class="score-pct">100.0%</div>
+                <div class="score-label">Protocol</div>
+                <div class="score-detail">8P / 0F / 0S</div>
+            </div>
+            <div class="score-card">
+                <svg viewBox="0 0 100 100" class="ring">
+                    <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                    <circle cx="50" cy="50" r="40" class="ring-fg ring-pass"
+                        stroke-dasharray="251.2 251.2"/>
+                </svg>
+                <div class="score-pct">100.0%</div>
+                <div class="score-label">Functional</div>
+                <div class="score-detail">7P / 0F / 0S</div>
+            </div>
+            <div class="score-card">
+                <svg viewBox="0 0 100 100" class="ring">
+                    <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                    <circle cx="50" cy="50" r="40" class="ring-fg ring-pass"
+                        stroke-dasharray="251.2 251.2"/>
+                </svg>
+                <div class="score-pct">100.0%</div>
+                <div class="score-label">Security</div>
+                <div class="score-detail">12P / 0F / 0S</div>
+            </div>
+            <div class="score-card">
+                <svg viewBox="0 0 100 100" class="ring">
+                    <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                    <circle cx="50" cy="50" r="40" class="ring-fg ring-pass"
+                        stroke-dasharray="251.2 251.2"/>
+                </svg>
+                <div class="score-pct">100.0%</div>
+                <div class="score-label">Interop</div>
+                <div class="score-detail">2P / 0F / 0S</div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Server Stability Status -->
+        <section class="card" id="server-stability">
+            <h2>Server Stability Status</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="il">Status</div>
+                    <div class="iv"><span class="badge badge-skip">N/A</span></div>
+                </div>
+                <div class="info-item">
+                    <div class="il">Transport</div>
+                    <div class="iv">http</div>
+                </div>
+                <div class="info-item">
+                    <div class="il">Requests</div>
+                    <div class="iv">60</div>
+                </div>
+                <div class="info-item">
+                    <div class="il">Transport Failures</div>
+                    <div class="iv">0</div>
+                </div>
+                <div class="info-item">
+                    <div class="il">Avg Response</div>
+                    <div class="iv">18.98ms</div>
+                </div>
+            </div>
+            <p class="stability-detail">Stability tracking applies to STDIO transport only.</p>
+        </section>
+
+        <!-- Summary by Category -->
+        <section class="card" id="category-summary">
+            <h2>Results by Category</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Passed</th>
+                        <th>Failed</th>
+                        <th>Skipped</th>
+                        <th>Total</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>8</td>
+                <td>0</td>
+                <td>0</td>
+                <td>8</td>
+                <td>100.0%</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>7</td>
+                <td>0</td>
+                <td>0</td>
+                <td>7</td>
+                <td>100.0%</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>5</td>
+                <td>0</td>
+                <td>0</td>
+                <td>5</td>
+                <td>100.0%</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>7</td>
+                <td>0</td>
+                <td>0</td>
+                <td>7</td>
+                <td>100.0%</td>
+            </tr>
+            <tr>
+                <td>Interoperability</td>
+                <td>2</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2</td>
+                <td>100.0%</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>4</td>
+                <td>0</td>
+                <td>0</td>
+                <td>4</td>
+                <td>100.0%</td>
+            </tr>
+                </tbody>
+            </table>
+        </section>
+
+        
+
+        
+
+        <!-- Detailed Test Results -->
+        <section class="card" id="test-results">
+            <h2>Test Results (33P / 0F / 0S)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Test</th>
+                        <th>Status</th>
+                        <th>Level</th>
+                        <th>Severity</th>
+                        <th>Message</th>
+                        <th>Spec Clause</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Initialize Handshake</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-critical">critical</span></td>
+                <td class="msg-cell">Initialize response has protocol, capabilities and server metadata</td>
+                <td class="mono">MCP spec 2025-11-25 §3.1 — initialize lifecycle</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Initialized Notification</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server accepted initialized notification</td>
+                <td class="mono">MCP spec 2025-11-25 §3.1 — notifications/initialized</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Tools List Schema</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">tools/list returned 1 valid tool definitions</td>
+                <td class="mono">MCP spec 2025-11-25 §5.1 — tools/list response shape</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Resources List Schema</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">resources/list returned 1 valid resource definitions</td>
+                <td class="mono">MCP spec 2025-11-25 §5.2 — resources/list response shape</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Prompts List Schema</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">prompts/list returned 1 valid prompt definitions</td>
+                <td class="mono">MCP spec 2025-11-25 §5.3 — prompts/list response shape</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Resource Read Validation</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">resources/read returned 1 valid resource content entries</td>
+                <td class="mono">MCP spec 2025-11-25 §5.2 — resources/read response</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Prompt Get Validation</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">prompts/get returned 1 valid prompt messages</td>
+                <td class="mono">MCP spec 2025-11-25 §5.3 — prompts/get response</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Advertised Tool Execution</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Advertised tool executed successfully</td>
+                <td class="mono">MCP spec 2025-11-25 §5.1 — tools/call response</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Unknown Method Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §5.1 — method not found (-32601)</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>Null Method Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — method must be non-null string</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>Invalid Method Type Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — method must be string</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>Empty Method Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — method must be non-empty</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>Missing JSON-RPC Version Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — jsonrpc field required</td>
+            </tr>
+            <tr>
+                <td>Basic Security Validation</td>
+                <td>Invalid JSON-RPC Version Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — jsonrpc must be exactly 2.0</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Malformed JSON Parse Error</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4.1 — parse error (-32700)</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Non-Object JSON Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — request must be object</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Missing Method Field Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — method field required</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Missing Id Treated as Notification</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server returned an empty body, correctly treating the id-less message as a notification</td>
+                <td class="mono">JSON-RPC 2.0 §4 — no-id message is notification</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Null Id Treated as Notification</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server returned an empty body, correctly treating the id-less message as a notification</td>
+                <td class="mono">JSON-RPC 2.0 §4 — null-id message is notification</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Array Params Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">JSON-RPC 2.0 §4 — params must be object not array</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Unsupported Protocol Version Handling</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server negotiated supported protocol version &#x27;2025-11-25&#x27; after client requested unsupported &#x27;1900-01-01&#x27;</td>
+                <td class="mono">MCP spec 2025-11-25 §3.1 — version negotiation</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Missing Initialize Client Info Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">MCP spec 2025-11-25 §3.1 — clientInfo field</td>
+            </tr>
+            <tr>
+                <td>Advanced Negative Validation</td>
+                <td>Invalid Tool Parameters Rejection</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Valid JSON-RPC error response</td>
+                <td class="mono">MCP spec 2025-11-25 §5.1 — parameter validation</td>
+            </tr>
+            <tr>
+                <td>Interoperability</td>
+                <td>String Request Id Echo</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">Initialize response has protocol, capabilities and server metadata</td>
+                <td class="mono">JSON-RPC 2.0 §4 — id must be echoed in response</td>
+            </tr>
+            <tr>
+                <td>Interoperability</td>
+                <td>Declared Capability Consistency</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">Declared server capabilities are backed by working list methods</td>
+                <td class="mono">MCP spec 2025-11-25 §3.2 — capability negotiation</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Pagination Cursor Handling</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">Server ignored the unknown cursor and returned a valid result</td>
+                <td class="mono">MCP spec 2025-11-25 §5 — pagination cursor</td>
+            </tr>
+            <tr>
+                <td>Functional Correctness</td>
+                <td>Capability-Gated Tool Call</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server returned a JSON-RPC error for a non-existent tool</td>
+                <td class="mono">MCP spec 2025-11-25 §3.2 — strict capability gating</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Tools List Next Cursor</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">No nextCursor field present (acceptable)</td>
+                <td class="mono">MCP spec 2025-11-25 §5 — nextCursor in list responses</td>
+            </tr>
+            <tr>
+                <td>Protocol Conformance</td>
+                <td>Server Info Completeness</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">serverInfo has both a name and a version</td>
+                <td class="mono">MCP spec 2025-11-25 §3.1 — serverInfo fields</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>Protocol Version Header Enforcement</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Server accepts requests without version header (permissive)</td>
+                <td class="mono">MCP spec 2025-11-25 §2.4 — MCP-Protocol-Version header required</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>Invalid Protocol Version Header Handling</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">Server negotiated supported protocol version &#x27;2025-11-25&#x27; despite the invalid &#x27;0.0.0&#x27; header</td>
+                <td class="mono">MCP spec 2025-11-25 §2.4 — version header validation</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>OAuth Discovery Endpoint</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">OAuth discovery document present with issuer and authorization_endpoint</td>
+                <td class="mono">MCP spec 2025-11-25 §6.3 — OAuth 2.1 authorization server metadata</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>Unauthenticated Request Response</td>
+                <td><span class="badge badge-pass">PASS</span></td>
+                <td>SHOULD</td>
+                <td><span class="severity-pill severity-medium">medium</span></td>
+                <td class="msg-cell">Server is open/public: responded 200 with a valid JSON-RPC result to an unauthenticated request</td>
+                <td class="mono">MCP spec 2025-11-25 §6.3 — 401 with WWW-Authenticate on protected resources</td>
+            </tr>
+            <tr>
+                <td>Authorization Conformance</td>
+                <td>Transport Version Header in Response</td>
+                <td><span class="badge badge-warn">WARN</span></td>
+                <td>MUST</td>
+                <td><span class="severity-pill severity-high">high</span></td>
+                <td class="msg-cell">Response did not include the MCP-Protocol-Version header (advisory — server should echo it back)</td>
+                <td class="mono">MCP spec 2025-11-25 §2.4 — MCP-Protocol-Version in responses</td>
+            </tr>
+                </tbody>
+            </table>
+        </section>
+
+        
+        <section class="card" id="recommendations">
+            <h2>Recommendations (1 — MUST violations first)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Level / Status</th>
+                        <th>Test</th>
+                        <th>Spec Clause</th>
+                        <th>Remediation</th>
+                        <th>Correct Response Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+            <tr>
+                <td><span class="badge badge-warn">MUST WARN</span></td>
+                <td>Transport Version Header in Response</td>
+                <td class="mono">MCP spec 2025-11-25 §2.4 — MCP-Protocol-Version in responses</td>
+                <td class="msg-cell">Review the spec clause and ensure the server response matches the normative requirement.</td>
+                <td><span class='msg-cell'>&mdash;</span></td>
+            </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="footer">
+            Generated by MCP Assurance Suite &middot; 2026-06-10T22:02:42
+        </div>
+
+    </div>
+</body>
+</html>

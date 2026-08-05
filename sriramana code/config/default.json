@@ -1,0 +1,9 @@
+{
+  "transport": "http",
+  "server_url": "http://127.0.0.1:8000",
+  "command": null,
+  "protocol_version": "2025-11-25",
+  "output_dir": "reports/local_sample",
+  "request_timeout": 5,
+  "use_sample_server": true
+}

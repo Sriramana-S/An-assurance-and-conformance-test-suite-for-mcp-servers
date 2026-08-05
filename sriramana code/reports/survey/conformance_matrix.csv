@@ -1,0 +1,35 @@
+Case ID,Case Name,Category,Conformance Level,Spec Clause,Servers Tested,Servers Passed,Servers Failed,Servers Warned,Servers Skipped,Pass Rate (%),Fail Rate (%),Advisory Rate (%)
+C01,Array Params Rejection,Advanced Negative Validation,MUST,JSON-RPC 2.0 §4 — params must be object not array,32,0,0,32,0,0.0,0.0,100.0
+C02,Malformed JSON Parse Error,Advanced Negative Validation,MUST,JSON-RPC 2.0 §4.1 — parse error (-32700),32,0,12,20,0,0.0,37.5,62.5
+C03,Missing Method Field Rejection,Advanced Negative Validation,MUST,JSON-RPC 2.0 §4 — method field required,32,0,0,32,0,0.0,0.0,100.0
+C04,Non-Object JSON Rejection,Advanced Negative Validation,MUST,JSON-RPC 2.0 §4 — request must be object,32,0,12,20,0,0.0,37.5,62.5
+C05,Invalid Tool Parameters Rejection,Advanced Negative Validation,SHOULD,MCP spec 2025-11-25 §5.1 — parameter validation,32,1,0,31,0,3.1,0.0,96.9
+C06,Missing Initialize Client Info Rejection,Advanced Negative Validation,SHOULD,MCP spec 2025-11-25 §3.1 — clientInfo field,32,13,0,19,0,40.6,0.0,59.4
+C07,Unsupported Protocol Version Handling,Advanced Negative Validation,SHOULD,MCP spec 2025-11-25 §3.1 — version negotiation,32,31,1,0,0,96.9,3.1,0.0
+C08,Protocol Version Header Enforcement,Authorization Conformance,MUST,MCP spec 2025-11-25 §2.4 — MCP-Protocol-Version header required,32,32,0,0,0,100.0,0.0,0.0
+C09,Transport Version Header in Response,Authorization Conformance,MUST,MCP spec 2025-11-25 §2.4 — MCP-Protocol-Version in responses,32,0,0,0,32,N/A,N/A,N/A
+C10,Invalid Protocol Version Header Handling,Authorization Conformance,SHOULD,MCP spec 2025-11-25 §2.4 — version header validation,32,0,0,0,32,N/A,N/A,N/A
+C11,OAuth Discovery Endpoint,Authorization Conformance,SHOULD,MCP spec 2025-11-25 §6.3 — OAuth 2.1 authorization server metadata,32,0,0,0,32,N/A,N/A,N/A
+C12,Unauthenticated Request Response,Authorization Conformance,SHOULD,MCP spec 2025-11-25 §6.3 — 401 with WWW-Authenticate on protected resources,32,0,0,0,32,N/A,N/A,N/A
+C13,Empty Method Rejection,Basic Security Validation,MUST,JSON-RPC 2.0 §4 — method must be non-empty,32,0,31,1,0,0.0,96.9,3.1
+C14,Invalid JSON-RPC Version Rejection,Basic Security Validation,MUST,JSON-RPC 2.0 §4 — jsonrpc must be exactly 2.0,32,0,0,32,0,0.0,0.0,100.0
+C15,Invalid Method Type Rejection,Basic Security Validation,MUST,JSON-RPC 2.0 §4 — method must be string,32,0,0,32,0,0.0,0.0,100.0
+C16,Missing JSON-RPC Version Rejection,Basic Security Validation,MUST,JSON-RPC 2.0 §4 — jsonrpc field required,32,0,0,32,0,0.0,0.0,100.0
+C17,Null Method Rejection,Basic Security Validation,MUST,JSON-RPC 2.0 §4 — method must be non-null string,32,0,0,32,0,0.0,0.0,100.0
+C18,Advertised Tool Execution,Functional Correctness,MUST,MCP spec 2025-11-25 §5.1 — tools/call response,32,32,0,0,0,100.0,0.0,0.0
+C19,Capability-Gated Tool Call,Functional Correctness,MUST,MCP spec 2025-11-25 §3.2 — strict capability gating,32,30,2,0,0,93.8,6.2,0.0
+C20,Prompt Get Validation,Functional Correctness,MUST,MCP spec 2025-11-25 §5.3 — prompts/get response,32,32,0,0,0,100.0,0.0,0.0
+C21,Prompts List Schema,Functional Correctness,MUST,MCP spec 2025-11-25 §5.3 — prompts/list response shape,32,32,0,0,0,100.0,0.0,0.0
+C22,Resource Read Validation,Functional Correctness,MUST,MCP spec 2025-11-25 §5.2 — resources/read response,32,30,2,0,0,93.8,6.2,0.0
+C23,Resources List Schema,Functional Correctness,MUST,MCP spec 2025-11-25 §5.2 — resources/list response shape,32,32,0,0,0,100.0,0.0,0.0
+C24,Tools List Schema,Functional Correctness,MUST,MCP spec 2025-11-25 §5.1 — tools/list response shape,32,32,0,0,0,100.0,0.0,0.0
+C25,Declared Capability Consistency,Interoperability,MUST,MCP spec 2025-11-25 §3.2 — capability negotiation,32,32,0,0,0,100.0,0.0,0.0
+C26,String Request Id Echo,Interoperability,MUST,JSON-RPC 2.0 §4 — id must be echoed in response,32,32,0,0,0,100.0,0.0,0.0
+C27,Initialize Handshake,Protocol Conformance,MUST,MCP spec 2025-11-25 §3.1 — initialize lifecycle,32,32,0,0,0,100.0,0.0,0.0
+C28,Initialized Notification,Protocol Conformance,MUST,MCP spec 2025-11-25 §3.1 — notifications/initialized,32,32,0,0,0,100.0,0.0,0.0
+C29,Missing Id Treated as Notification,Protocol Conformance,MUST,JSON-RPC 2.0 §4 — no-id message is notification,32,32,0,0,0,100.0,0.0,0.0
+C30,Null Id Treated as Notification,Protocol Conformance,MUST,JSON-RPC 2.0 §4 — null-id message is notification,32,32,0,0,0,100.0,0.0,0.0
+C31,Unknown Method Rejection,Protocol Conformance,MUST,JSON-RPC 2.0 §5.1 — method not found (-32601),32,19,13,0,0,59.4,40.6,0.0
+C32,Pagination Cursor Handling,Protocol Conformance,SHOULD,MCP spec 2025-11-25 §5 — pagination cursor,32,32,0,0,0,100.0,0.0,0.0
+C33,Server Info Completeness,Protocol Conformance,SHOULD,MCP spec 2025-11-25 §3.1 — serverInfo fields,32,32,0,0,0,100.0,0.0,0.0
+C34,Tools List Next Cursor,Protocol Conformance,SHOULD,MCP spec 2025-11-25 §5 — nextCursor in list responses,32,32,0,0,0,100.0,0.0,0.0

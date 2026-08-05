@@ -1,0 +1,202 @@
+{
+  "snapshot_old": "snapshot_20260610_230717.json",
+  "snapshot_new": "snapshot_20260610_231210.json",
+  "score_drops": [],
+  "improvements": [],
+  "new_servers": [
+    "mcp-server-aws-kb",
+    "mcp-server-gitlab",
+    "mcp-server-jupyter",
+    "mcp-server-perplexity",
+    "server-brave-search",
+    "server-github",
+    "server-google-maps",
+    "server-slack"
+  ],
+  "missing_servers": [],
+  "new_must_violations": [],
+  "fixed_must_violations": [],
+  "score_comparison": [
+    {
+      "name": "adeu-mcp",
+      "old_score": 94.12,
+      "new_score": 94.12,
+      "delta": 0.0
+    },
+    {
+      "name": "ai-dossier-mcp",
+      "old_score": 89.47,
+      "new_score": 89.47,
+      "delta": 0.0
+    },
+    {
+      "name": "arxiv-mcp-server",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    },
+    {
+      "name": "autonomad-travel",
+      "old_score": 88.24,
+      "new_score": 88.24,
+      "delta": 0.0
+    },
+    {
+      "name": "computeback-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "kawacode-mcp",
+      "old_score": 94.74,
+      "new_score": 94.74,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-datetime",
+      "old_score": 77.78,
+      "new_score": 77.78,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-hn",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-airbnb",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-calculator",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-duckduckgo",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-fetch",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-git",
+      "old_score": 71.43,
+      "new_score": 71.43,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-sqlite",
+      "old_score": 77.27,
+      "new_score": 77.27,
+      "delta": 0.0
+    },
+    {
+      "name": "mcp-server-time",
+      "old_score": 77.78,
+      "new_score": 77.78,
+      "delta": 0.0
+    },
+    {
+      "name": "mcpcap",
+      "old_score": 80.95,
+      "new_score": 80.95,
+      "delta": 0.0
+    },
+    {
+      "name": "meetlark-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "nocturnusai-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "notion-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "nudg3-mcp",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    },
+    {
+      "name": "optibot-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "playwright-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "rapay-mcp",
+      "old_score": 86.67,
+      "new_score": 86.67,
+      "delta": 0.0
+    },
+    {
+      "name": "raven-mcp",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "server-everything",
+      "old_score": 94.74,
+      "new_score": 94.74,
+      "delta": 0.0
+    },
+    {
+      "name": "server-filesystem",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "server-memory",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "server-sequentialthinking",
+      "old_score": 93.33,
+      "new_score": 93.33,
+      "delta": 0.0
+    },
+    {
+      "name": "wikipedia-mcp",
+      "old_score": 80.0,
+      "new_score": 80.0,
+      "delta": 0.0
+    }
+  ],
+  "change_summary": {
+    "improved": 0,
+    "dropped": 0,
+    "unchanged": 29,
+    "new": 8,
+    "missing": 0
+  }
+}

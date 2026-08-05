@@ -1,0 +1,559 @@
+{
+    "timestamp": "2026-06-10T22:02:42",
+    "target_url": "http://127.0.0.1:8001",
+    "transport_type": "http",
+    "transport_metrics": {
+        "transport_type": "http",
+        "request_count": 60,
+        "success_count": 60,
+        "failure_count": 0,
+        "average_response_time_ms": 18.98,
+        "min_response_time_ms": 3.43,
+        "max_response_time_ms": 49.57,
+        "failure_rate_percent": 0.0
+    },
+    "protocol_version": "2025-11-25",
+    "overall_compliance_score": 100.0,
+    "protocol_compliance_score": 100.0,
+    "functional_compliance_score": 100.0,
+    "security_compliance_score": 100.0,
+    "interoperability_score": 100.0,
+    "server_stability": {
+        "status": "N/A",
+        "transport": "http",
+        "terminated": false,
+        "crash_test": null,
+        "skipped_due_to_crash": 0
+    },
+    "compliance_scores": {
+        "protocol": {
+            "score": 100.0,
+            "passed": 8,
+            "failed": 0,
+            "skipped": 0,
+            "total": 8,
+            "categories": [
+                "Protocol Conformance"
+            ]
+        },
+        "functional": {
+            "score": 100.0,
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0,
+            "total": 7,
+            "categories": [
+                "Functional Correctness"
+            ]
+        },
+        "security": {
+            "score": 100.0,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "total": 12,
+            "categories": [
+                "Advanced Negative Validation",
+                "Basic Security Validation"
+            ]
+        },
+        "interoperability": {
+            "score": 100.0,
+            "passed": 2,
+            "failed": 0,
+            "skipped": 0,
+            "total": 2,
+            "categories": [
+                "Interoperability"
+            ]
+        },
+        "overall": {
+            "score": 100.0,
+            "passed": 33,
+            "failed": 0,
+            "warned": 1,
+            "skipped": 0,
+            "total": 34
+        }
+    },
+    "summary": {
+        "passed": 33,
+        "failed": 0,
+        "warned": 1,
+        "skipped": 0,
+        "total": 34,
+        "score": 100.0
+    },
+    "category_summary": {
+        "Protocol Conformance": {
+            "PASS": 8,
+            "FAIL": 0,
+            "SKIP": 0
+        },
+        "Functional Correctness": {
+            "PASS": 7,
+            "FAIL": 0,
+            "SKIP": 0
+        },
+        "Basic Security Validation": {
+            "PASS": 5,
+            "FAIL": 0,
+            "SKIP": 0
+        },
+        "Advanced Negative Validation": {
+            "PASS": 7,
+            "FAIL": 0,
+            "SKIP": 0
+        },
+        "Interoperability": {
+            "PASS": 2,
+            "FAIL": 0,
+            "SKIP": 0
+        },
+        "Authorization Conformance": {
+            "PASS": 4,
+            "FAIL": 0,
+            "SKIP": 0,
+            "WARN": 1
+        }
+    },
+    "conformance_breakdown": {
+        "must_violations": 0,
+        "should_advisories": 0,
+        "passing": 33,
+        "skipped": 0
+    },
+    "recommendations": [
+        {
+            "rank": 2,
+            "severity": "medium",
+            "status": "WARN",
+            "conformance_level": "MUST",
+            "category": "Authorization Conformance",
+            "test": "Transport Version Header in Response",
+            "spec_clause": "MCP spec 2025-11-25 \u00a72.4 \u2014 MCP-Protocol-Version in responses",
+            "remediation": "Review the spec clause and ensure the server response matches the normative requirement.",
+            "correct_response_example": "",
+            "observed": "Response did not include the MCP-Protocol-Version header (advisory \u2014 server should echo it back)",
+            "title": "[MUST WARN] Transport Version Header in Response"
+        }
+    ],
+    "external_servers": [],
+    "benchmark_comparison": [],
+    "results": [
+        {
+            "test": "Initialize Handshake",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "critical",
+            "message": "Initialize response has protocol, capabilities and server metadata",
+            "evidence": {
+                "protocolVersion": "2025-11-25"
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 initialize lifecycle"
+        },
+        {
+            "test": "Initialized Notification",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server accepted initialized notification",
+            "evidence": {
+                "status_code": 204
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 notifications/initialized"
+        },
+        {
+            "test": "Tools List Schema",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "high",
+            "message": "tools/list returned 1 valid tool definitions",
+            "evidence": {
+                "tool_count": 1
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 tools/list response shape"
+        },
+        {
+            "test": "Resources List Schema",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "resources/list returned 1 valid resource definitions",
+            "evidence": {
+                "resource_count": 1
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.2 \u2014 resources/list response shape"
+        },
+        {
+            "test": "Prompts List Schema",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "prompts/list returned 1 valid prompt definitions",
+            "evidence": {
+                "prompt_count": 1
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.3 \u2014 prompts/list response shape"
+        },
+        {
+            "test": "Resource Read Validation",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "resources/read returned 1 valid resource content entries",
+            "evidence": {
+                "content_count": 1
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.2 \u2014 resources/read response"
+        },
+        {
+            "test": "Prompt Get Validation",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "prompts/get returned 1 valid prompt messages",
+            "evidence": {
+                "message_count": 1
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.3 \u2014 prompts/get response"
+        },
+        {
+            "test": "Advertised Tool Execution",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Advertised tool executed successfully",
+            "evidence": {},
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 tools/call response"
+        },
+        {
+            "test": "Unknown Method Rejection",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32601
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a75.1 \u2014 method not found (-32601)"
+        },
+        {
+            "test": "Null Method Rejection",
+            "category": "Basic Security Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-null string"
+        },
+        {
+            "test": "Invalid Method Type Rejection",
+            "category": "Basic Security Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be string"
+        },
+        {
+            "test": "Empty Method Rejection",
+            "category": "Basic Security Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method must be non-empty"
+        },
+        {
+            "test": "Missing JSON-RPC Version Rejection",
+            "category": "Basic Security Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc field required"
+        },
+        {
+            "test": "Invalid JSON-RPC Version Rejection",
+            "category": "Basic Security Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 jsonrpc must be exactly 2.0"
+        },
+        {
+            "test": "Malformed JSON Parse Error",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32700
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74.1 \u2014 parse error (-32700)"
+        },
+        {
+            "test": "Non-Object JSON Rejection",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 request must be object"
+        },
+        {
+            "test": "Missing Method Field Rejection",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 method field required"
+        },
+        {
+            "test": "Missing Id Treated as Notification",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server returned an empty body, correctly treating the id-less message as a notification",
+            "evidence": {
+                "status_code": 204
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 no-id message is notification"
+        },
+        {
+            "test": "Null Id Treated as Notification",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server returned an empty body, correctly treating the id-less message as a notification",
+            "evidence": {
+                "status_code": 204
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 null-id message is notification"
+        },
+        {
+            "test": "Array Params Rejection",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32600
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 params must be object not array"
+        },
+        {
+            "test": "Unsupported Protocol Version Handling",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server negotiated supported protocol version '2025-11-25' after client requested unsupported '1900-01-01'",
+            "evidence": {
+                "requested_version": "1900-01-01",
+                "negotiated_version": "2025-11-25"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 version negotiation"
+        },
+        {
+            "test": "Missing Initialize Client Info Rejection",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32602
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 clientInfo field"
+        },
+        {
+            "test": "Invalid Tool Parameters Rejection",
+            "category": "Advanced Negative Validation",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Valid JSON-RPC error response",
+            "evidence": {
+                "actual_code": -32602
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75.1 \u2014 parameter validation"
+        },
+        {
+            "test": "String Request Id Echo",
+            "category": "Interoperability",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "Initialize response has protocol, capabilities and server metadata",
+            "evidence": {
+                "protocolVersion": "2025-11-25"
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "JSON-RPC 2.0 \u00a74 \u2014 id must be echoed in response"
+        },
+        {
+            "test": "Declared Capability Consistency",
+            "category": "Interoperability",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "Declared server capabilities are backed by working list methods",
+            "evidence": {
+                "capabilities": [
+                    "prompts",
+                    "resources",
+                    "tools"
+                ]
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.2 \u2014 capability negotiation"
+        },
+        {
+            "test": "Pagination Cursor Handling",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "Server ignored the unknown cursor and returned a valid result",
+            "evidence": {
+                "handling": "ignored"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75 \u2014 pagination cursor"
+        },
+        {
+            "test": "Capability-Gated Tool Call",
+            "category": "Functional Correctness",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server returned a JSON-RPC error for a non-existent tool",
+            "evidence": {
+                "code": -32602
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.2 \u2014 strict capability gating"
+        },
+        {
+            "test": "Tools List Next Cursor",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "No nextCursor field present (acceptable)",
+            "evidence": {
+                "nextCursor": "absent"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a75 \u2014 nextCursor in list responses"
+        },
+        {
+            "test": "Server Info Completeness",
+            "category": "Protocol Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "serverInfo has both a name and a version",
+            "evidence": {
+                "name": "non-compliant-mcp-server",
+                "version": "1.0.0"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a73.1 \u2014 serverInfo fields"
+        },
+        {
+            "test": "Protocol Version Header Enforcement",
+            "category": "Authorization Conformance",
+            "status": "PASS",
+            "severity": "high",
+            "message": "Server accepts requests without version header (permissive)",
+            "evidence": {
+                "status_code": 200,
+                "policy": "permissive"
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a72.4 \u2014 MCP-Protocol-Version header required"
+        },
+        {
+            "test": "Invalid Protocol Version Header Handling",
+            "category": "Authorization Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "Server negotiated supported protocol version '2025-11-25' despite the invalid '0.0.0' header",
+            "evidence": {
+                "protocolVersion": "2025-11-25"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a72.4 \u2014 version header validation"
+        },
+        {
+            "test": "OAuth Discovery Endpoint",
+            "category": "Authorization Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "OAuth discovery document present with issuer and authorization_endpoint",
+            "evidence": {
+                "issuer": "http://127.0.0.1:8001",
+                "authorization_endpoint": "http://127.0.0.1:8001/oauth/authorize"
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a76.3 \u2014 OAuth 2.1 authorization server metadata"
+        },
+        {
+            "test": "Unauthenticated Request Response",
+            "category": "Authorization Conformance",
+            "status": "PASS",
+            "severity": "medium",
+            "message": "Server is open/public: responded 200 with a valid JSON-RPC result to an unauthenticated request",
+            "evidence": {
+                "status_code": 200
+            },
+            "conformance_level": "SHOULD",
+            "spec_clause": "MCP spec 2025-11-25 \u00a76.3 \u2014 401 with WWW-Authenticate on protected resources"
+        },
+        {
+            "test": "Transport Version Header in Response",
+            "category": "Authorization Conformance",
+            "status": "WARN",
+            "severity": "high",
+            "message": "Response did not include the MCP-Protocol-Version header (advisory \u2014 server should echo it back)",
+            "evidence": {
+                "status_code": 200
+            },
+            "conformance_level": "MUST",
+            "spec_clause": "MCP spec 2025-11-25 \u00a72.4 \u2014 MCP-Protocol-Version in responses"
+        }
+    ]
+}
